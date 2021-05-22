@@ -6,6 +6,10 @@
 //6) Tambien instalamos otro paquete llamado cors (npm i cors) permite proteger nustro servidor de na manera superficial
 //pero muchos navegadores como chrome o firefox les puede dar error si el cors no esta habilitado y nosotros intenmos llamar nuestro servidor
 //al momento de ya guardar nuestro repositorio en git si llegamos a borrar algo lo poemos recuperar (git checkout --)
+//Podemos crear una version del codigo antes de realizar cambios para que podamos descargarlo de un punto en especifico
+//git tag -a v1.0.0 -m "Mensaje"
+//git push --tag
+//nunca se debe olvidar en el packege.json poner el start debido a que despues al subirlo a heroku no va a abrir el link
 const Server = require('./models/server')
 
 require('dotenv').config()//con esto obtenemos nuestras variables de entorno
