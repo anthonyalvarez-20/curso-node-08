@@ -5,6 +5,7 @@
 //5)Luego creamos nuestra carpeta publica que es donde estara nuestros archivos html para nuestra pagina web
 //6) Tambien instalamos otro paquete llamado cors (npm i cors) permite proteger nustro servidor de na manera superficial
 //pero muchos navegadores como chrome o firefox les puede dar error si el cors no esta habilitado y nosotros intenmos llamar nuestro servidor
+//al momento de ya guardar nuestro repositorio en git si llegamos a borrar algo lo poemos recuperar (git checkout --)
 const Server = require('./models/server')
 
 require('dotenv').config()//con esto obtenemos nuestras variables de entorno
