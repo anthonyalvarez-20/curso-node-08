@@ -1,6 +1,7 @@
 //Creacion de nuestro web server
 const express = require('express')
 const cors = require('cors')
+const {dbConnection} = require('../database/config')
 class Server{
 
     constructor(){
@@ -8,11 +9,21 @@ class Server{
         this.port = process.env.PORT
         this.usuariosPath = '/api/usuarios'
 
-        //Middleware(funciones que van a añadir otra funcionalidad al web server)
+        //conexion a la base de datos
+        this.databaseConnection()
+
+
+        //Middleware(funciones que se ejecuta antes de llamar a un controlador o seguir ocn las peticiones)
         this.middleware()
         //rutas de mi aplicacion
         this.routers()
     }
+
+    async databaseConnection (){
+        await dbConnection()
+    }
+
+
 
     middleware(){
         //Cors

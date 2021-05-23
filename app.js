@@ -10,6 +10,12 @@
 //git tag -a v1.0.0 -m "Mensaje"
 //git push --tag
 //nunca se debe olvidar en el packege.json poner el start debido a que despues al subirlo a heroku no va a abrir el link
+//Luego realizamos la coneccion a mongo y despues de conectarnos descargamos un paquete llamado "mongoose", luego creamos una carpeta
+//database y un archivo config.js y trabajamos en ello
+//Luego en la carpeta modelo vamos a ir trbajando en nuestras tablas que tendra nuestra base de datos
+//para encriptar la contraseña utilizaremos un paquete "npm i bcryptjs"
+//para validar el correo se utiliza el paquete "npm i express-validator"
+
 const Server = require('./models/server')
 
 require('dotenv').config()//con esto obtenemos nuestras variables de entorno

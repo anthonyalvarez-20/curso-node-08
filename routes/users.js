@@ -1,12 +1,34 @@
+const {validar_user} = require('../middleware/validar-campos')
 const { Router } = require('express')
 const router = Router()
+const {validar_rol,validar_correo,validar_usuarioporID} = require('../helpers/db-validators')
 const {usuariosGet,usuariosPost,usuariosPut,usuariosPatch,usuariosDelete} = require('../controllers/usuarios')
+const {check} = require('express-validator')
+
 
 //rutas de mi app
 router.get('/',usuariosGet)
-router.post('/', usuariosPost )//sirve para crear nuevos recursos
-router.put('/:id',usuariosPut)//sirve para actualizar la data, mandamos el id como parametro en la ruta
+router.post('/', [
+  //arreglo de middleware 1)ruta,mmiddleware[],funcion. Aqui poneos las respectivas validaciones, gracias a paquete de "express-validator"
+check('nombre','El nombre es obligatorio').not().isEmpty(),//para validar de que el nombre sea ingresado
+check('password','La contraseña debe de ser mas de 6 letras').isLength({min:6}),//que sea minimo de 6 letras
+check('password','La contraseña es obligatoria').not().isEmpty(),
+check('correo','Correo no valido').isEmail(),//con isEmail le especifico que es un correo
+check('correo').custom(validar_correo),
+//check('rol','No es un rol permitido').isIn(['ADMIN_ROL','USER_ROL']),//en el isIn ponemos las variables permitidas en ese campo
+check('rol').custom(validar_rol),
+validar_user
+],usuariosPost )//sirve para crear nuevos recursos
+router.put('/:id',[
+  check('id','No es un id valido').isMongoId(), //con esto valido que el id que se buscar sea un id de tipo mongodatabse
+  check('id').custom(validar_usuarioporID),
+  validar_user
+],usuariosPut)//sirve para actualizar la data, mandamos el id como parametro en la ruta
 router.patch('/',usuariosPatch)
-router.delete('/',usuariosDelete)//para borrar
+router.delete('/:id',[
+  check('id','No es un id valido').isMongoId(), //con esto valido que el id que se buscar sea un id de tipo mongodatabse
+  check('id').custom(validar_usuarioporID),
+  validar_user
+],usuariosDelete)//para borrar
 
   module.exports = router
