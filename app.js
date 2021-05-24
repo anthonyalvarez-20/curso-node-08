@@ -15,6 +15,7 @@
 //Luego en la carpeta modelo vamos a ir trbajando en nuestras tablas que tendra nuestra base de datos
 //para encriptar la contraseña utilizaremos un paquete "npm i bcryptjs"
 //para validar el correo se utiliza el paquete "npm i express-validator"
+//par instalar los JWT instalamos un paquete llamado "npm install jsonwebtoken"
 
 const Server = require('./models/server')
 

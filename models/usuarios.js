@@ -37,8 +37,9 @@ const UsuarioSchema = Schema({
 })
 //esto nos sirve para cuando se imprime la informacion del usuario no aparezca la version y la contraseña
 UsuarioSchema.methods.toJSON = function(){
-    const {__v, password, ...usuario} = this.toObject()
-    return usuario
+    const {__v, password,_id,...usuario} = this.toObject();
+    usuario.uid = _id;
+    return usuario;
 }
 
 module.exports = model('Usuario',UsuarioSchema)//nombr de la tabla,el Schema que creamos

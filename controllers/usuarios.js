@@ -69,8 +69,8 @@ const usuariosDelete = async(req,res = response)=>{
     //borrarlo fisicamente de la base de datos
     //const usuario = await Usuario.findByIdAndDelete(id), no es recomendado hacerlo
     
-    const usuario = await Usuario.findByIdAndUpdate(id, {estado:false})
-    res.json(usuario)
+    const usuario = await Usuario.findByIdAndUpdate(id, {estado:false});
+    res.json(usuario);
 }
 
 module.exports = {
