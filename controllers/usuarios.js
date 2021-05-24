@@ -1,11 +1,11 @@
-const { response,request } = require('express')//esto se lo hace para que nos apaarezca las opciones al momento de usar el res
-const Usuario = require ('../models/usuarios')
-const bcryptjs = require ('bcryptjs')//encriptar la contraseña
+const { response,request } = require('express');//esto se lo hace para que nos apaarezca las opciones al momento de usar el res
+const Usuario = require ('../models/usuarios');
+const bcryptjs = require ('bcryptjs');//encriptar la contraseña
 
 const usuariosGet = async(req = request, res = response) => {//siempre al momento de mandar una respuesta es en el formato json
     
-    const {limite = 5, desde = 0} = req.query
-    const query = {estado:true}
+    const {limite = 5, desde = 0} = req.query;
+    const query = {estado:true};
   
  
 
@@ -16,16 +16,16 @@ const usuariosGet = async(req = request, res = response) => {//siempre al moment
                 .limit(Number(limite))//con el number transformamos a int el string, y este limit es cuantos registrs quiero que me devuelva
                 .skip(Number(desde))
 
-    ])
+    ]);
     res.json({//el formato json se lo tiene que enviar como un objeto
         total,
         usuarios
-    })
+    });
 }
 const usuariosPost = async (req = request, res=response)=>{
  
 
-    const {nombre, correo, password, rol}  = req.body//aqui esta recogiendo la informacion que el usuario esta mandando del body
+    const {nombre, correo, password, rol}  = req.body;//aqui esta recogiendo la informacion que el usuario esta mandando del body
     //esto se puede probar en el postman
 
     const usuario = new Usuario({nombre, correo, password,rol});
@@ -39,12 +39,12 @@ const usuariosPost = async (req = request, res=response)=>{
     res.json({
         msg: 'post API - controlador',
         usuario
-    })
+    });
 }
 
 const usuariosPut = async(req, res=response)=>{
-    const {id }= req.params
-    const {_id,password,google,correo, ...resto} = req.body//con esto extraigo esos datos y no permito que se actualicen, ej el correo
+    const {id }= req.params;
+    const {_id,password,google,correo, ...resto} = req.body;//con esto extraigo esos datos y no permito que se actualicen, ej el correo
 
     //Validar contra base de datos
     if(password){
@@ -53,19 +53,19 @@ const usuariosPut = async(req, res=response)=>{
     resto.password = bcryptjs.hashSync( password, salt );
     }
 
-    const usuario = await Usuario.findByIdAndUpdate(id,resto)
-    res.json(usuario)
+    const usuario = await Usuario.findByIdAndUpdate(id,resto);
+    res.json(usuario);
 }
 
 const usuariosPatch = (req,res = response)=>{
     res.json({
         msg: 'patch API - controlador'
-    })
+    });
 }
 
 const usuariosDelete = async(req,res = response)=>{
 
-    const {id} = req.params
+    const {id} = req.params;
     //borrarlo fisicamente de la base de datos
     //const usuario = await Usuario.findByIdAndDelete(id), no es recomendado hacerlo
     

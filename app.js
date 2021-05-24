@@ -17,11 +17,11 @@
 //para validar el correo se utiliza el paquete "npm i express-validator"
 //par instalar los JWT instalamos un paquete llamado "npm install jsonwebtoken"
 
-const Server = require('./models/server')
+const Server = require('./models/server');
 
-require('dotenv').config()//con esto obtenemos nuestras variables de entorno
+require('dotenv').config();//con esto obtenemos nuestras variables de entorno
 
 
  
-const server = new Server()
-server.liste()
+const server = new Server();
+server.liste();

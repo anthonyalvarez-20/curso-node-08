@@ -1,5 +1,5 @@
 //todo esto se llo hace con el archivo de mongoose y asi esta en la documentacion
-const { Schema, model } = require ('mongoose')
+const { Schema, model } = require ('mongoose');
 
 
 
@@ -34,7 +34,7 @@ const UsuarioSchema = Schema({
         type: Boolean,
         default: false,//cambiara de estado si el usuario se creo la cuenta con una cuenta de google
     },
-})
+});
 //esto nos sirve para cuando se imprime la informacion del usuario no aparezca la version y la contraseña
 UsuarioSchema.methods.toJSON = function(){
     const {__v, password,_id,...usuario} = this.toObject();
@@ -42,4 +42,4 @@ UsuarioSchema.methods.toJSON = function(){
     return usuario;
 }
 
-module.exports = model('Usuario',UsuarioSchema)//nombr de la tabla,el Schema que creamos
+module.exports = model('Usuario',UsuarioSchema);//nombr de la tabla,el Schema que creamos

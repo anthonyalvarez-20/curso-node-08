@@ -11,8 +11,8 @@ const{
   validar_roles
 } = require('../middleware');//cuando creas un archivo index, el programa siempre buscara ese archivo para ejecutarlo
 
-const {validar_rol,validar_correo,validar_usuarioporID} = require('../helpers/db-validators')
-const {usuariosGet,usuariosPost,usuariosPut,usuariosPatch,usuariosDelete} = require('../controllers/usuarios')
+const {validar_rol,validar_correo,validar_usuarioporID} = require('../helpers/db-validators');
+const {usuariosGet,usuariosPost,usuariosPut,usuariosPatch,usuariosDelete} = require('../controllers/usuarios');
 
 
 
@@ -30,15 +30,15 @@ check('correo').custom(validar_correo),
 //check('rol','No es un rol permitido').isIn(['ADMIN_ROL','USER_ROL']),//en el isIn ponemos las variables permitidas en ese campo
 check('rol').custom(validar_rol),
 validar_user
-],usuariosPost )//sirve para crear nuevos recursos
+],usuariosPost );//sirve para crear nuevos recursos
 
 router.put('/:id',[
   check('id','No es un id valido').isMongoId(), //con esto valido que el id que se buscar sea un id de tipo mongodatabse
   check('id').custom(validar_usuarioporID),
   validar_user
-],usuariosPut)//sirve para actualizar la data, mandamos el id como parametro en la ruta
+],usuariosPut);//sirve para actualizar la data, mandamos el id como parametro en la ruta
 
-router.patch('/',usuariosPatch)
+router.patch('/',usuariosPatch);
 router.delete('/:id',[
   validar_JWT,
   //validar_roles,
@@ -46,6 +46,6 @@ router.delete('/:id',[
   check('id','No es un id valido').isMongoId(), //con esto valido que el id que se buscar sea un id de tipo mongodatabse
   check('id').custom(validar_usuarioporID),
   validar_user
-],usuariosDelete)//para borrar
+],usuariosDelete);//para borrar
 
   module.exports = router
